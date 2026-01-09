@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隐迹的瑰宝：中华白海豚数字守护计划</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- 共用样式 -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- 导航栏 -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="text-2xl">🐬</div>
+                <span>白海豚守护计划</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="art-gallery.html">艺术画廊</a>
+                <a href="3d-experience.html">3D体验</a>
+                <a href="game.html">游戏</a>
+                <a href="community.html">社区</a>
+                <a href="data.html">数据</a>
+                <a href="ar-experience.html">AR体验</a>
+            </div>
+            <button class="mobile-menu-btn text-blue-900">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 浮动按钮 -->
+    <div class="floating-buttons">
+        <button class="floating-btn w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg" onclick="scrollToTop()" title="回到顶部">
+            ↑
+        </button>
+        <button class="floating-btn w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg" onclick="sharePage()" title="分享页面">
+            📤
+        </button>
+    </div>
+
+    <!-- 首页内容 -->
+    <section id="home" class="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-cyan-50 pt-24 wave-bg">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <!-- 英雄区域 -->
+            <div class="min-h-[80vh] flex flex-col justify-center mb-24 relative overflow-hidden">
+                <!-- 背景装饰 -->
+                <div class="absolute top-0 left-0 w-full h-full">
+                    <div class="absolute top-10 left-10 w-40 h-40 bg-blue-300 rounded-full opacity-20 animate-float"></div>
+                    <div class="absolute bottom-10 right-10 w-60 h-60 bg-pink-300 rounded-full opacity-20 animate-float" style="animation-delay: 1s;"></div>
+                    <div class="absolute top-1/2 left-1/4 w-20 h-20 bg-teal-300 rounded-full opacity-20 animate-float" style="animation-delay: 2s;"></div>
+                </div>
+                
+                <div class="text-center mb-16 animate-fade-in">
+                    <h1 class="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-blue-600 mb-6 leading-tight">
+                        隐迹的瑰宝
+                    </h1>
+                    <p class="text-2xl md:text-3xl font-semibold text-blue-800 mb-8">
+                        中华白海豚数字守护计划
+                    </p>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed">
+                        探索海洋精灵的神秘世界，用数字艺术与科技力量，
+                        守护"海上祥瑞"的生存家园
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button class="btn-primary text-white font-bold py-4 px-12 rounded-full shadow-lg text-lg animate-fade-in delay-100">
+                            开始探索
+                        </button>
+                        <button class="btn-secondary text-white font-bold py-4 px-12 rounded-full shadow-lg text-lg animate-fade-in delay-200">
+                            了解更多
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 主视觉元素 -->
+                <div class="relative w-full max-w-4xl mx-auto animate-fade-in delay-300">
+                    <div class="bg-gradient-to-br from-blue-400 to-blue-600 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-full">
+                            <div class="absolute top-5 right-5 w-20 h-20 bg-white rounded-full opacity-10"></div>
+                            <div class="absolute bottom-5 left-5 w-16 h-16 bg-white rounded-full opacity-10"></div>
+                        </div>
+                        <div class="flex flex-col md:flex-row items-center justify-between relative z-10">
+                            <div class="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                                <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">海洋精灵的呼唤</h2>
+                                <p class="text-blue-100 text-lg mb-6 leading-relaxed">
+                                    中华白海豚，素有"海上大熊猫"之称，是国家一级保护动物。
+                                    它们智商高，情感丰富，却面临着栖息地丧失、污染和人类活动的威胁。
+                                </p>
+                                <div class="flex items-center gap-4">
+                                    <div class="flex -space-x-2">
+                                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-blue-600 font-bold">1</div>
+                                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-blue-600 font-bold">2</div>
+                                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-blue-600 font-bold">3</div>
+                                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-blue-600 font-bold">+</div>
+                                    </div>
+                                    <p class="text-white text-sm">已有上千人加入守护计划</p>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 flex justify-center">
+                                <div class="text-9xl md:text-[120px] animate-float">🐬</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 项目亮点 -->
+            <div class="mb-24">
+                <div class="text-center mb-16 animate-fade-in">
+                    <h2 class="text-4xl font-bold text-blue-900 mb-4 section-title">项目亮点</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        通过创新科技与艺术融合，打造沉浸式的白海豚保护体验
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover animate-fade-in delay-100">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
+                            <div class="text-3xl">🎨</div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4">数字艺术画廊</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            融合AI技术与人类创意，打造独特的白海豚艺术作品，
+                            通过视觉艺术唤起人们对海洋保护的关注。
+                        </p>
+                        <a href="art-gallery.html" class="text-blue-600 hover:text-blue-800 font-medium flex items-center gap-2">
+                            探索画廊 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover animate-fade-in delay-200">
+                        <div class="w-16 h-16 bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl flex items-center justify-center mb-6">
+                            <div class="text-3xl">🐬</div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4">3D互动体验</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            运用Three.js技术，创建高精度的白海豚3D模型，
+                            让用户可以360度观察、互动，深入了解白海豚的身体结构。
+                        </p>
+                        <a href="3d-experience.html" class="text-blue-600 hover:text-blue-800 font-medium flex items-center gap-2">
+                            体验3D <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover animate-fade-in delay-300">
+                        <div class="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-2xl flex items-center justify-center mb-6">
+                            <div class="text-3xl">🎮</div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4">海洋守护者游戏</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            通过寓教于乐的游戏形式，让玩家扮演海洋守护者，
+                            帮助白海豚避开威胁，了解海洋保护的重要性。
+                        </p>
+                        <a href="game.html" class="text-blue-600 hover:text-blue-800 font-medium flex items-center gap-2">
+                            开始游戏 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 数据可视化预览 -->
+            <div class="mb-24 bg-white rounded-2xl p-8 shadow-lg animate-fade-in">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-blue-900 mb-4 section-title">守护数据</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        用数据说话，了解中华白海豚的生存现状与保护成果
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+                    <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 text-center card-hover">
+                        <div class="text-4xl mb-4 text-blue-500">📊</div>
+                        <h3 class="text-lg font-bold text-blue-800 mb-2">全球种群数量</h3>
+                        <p class="text-3xl font-bold text-blue-900" data-count="6000">0</p>
+                        <p class="text-gray-500 mt-2">头</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 text-center card-hover">
+                        <div class="text-4xl mb-4 text-blue-500">📍</div>
+                        <h3 class="text-lg font-bold text-blue-800 mb-2">主要分布区域</h3>
+                        <p class="text-3xl font-bold text-blue-900" data-count="8">0</p>
+                        <p class="text-gray-500 mt-2">个海域</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 text-center card-hover">
+                        <div class="text-4xl mb-4 text-blue-500">📈</div>
+                        <h3 class="text-lg font-bold text-blue-800 mb-2">保护成功率</h3>
+                        <p class="text-3xl font-bold text-blue-900" data-count="65">0</p>
+                        <p class="text-gray-500 mt-2">%</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 text-center card-hover">
+                        <div class="text-4xl mb-4 text-blue-500">🌊</div>
+                        <h3 class="text-lg font-bold text-blue-800 mb-2">栖息地面积</h3>
+                        <p class="text-3xl font-bold text-blue-900" data-count="12000">0</p>
+                        <p class="text-gray-500 mt-2">km²</p>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center">
+                    <a href="data.html" class="btn-primary text-white font-bold py-3 px-8 rounded-full shadow-md inline-flex items-center gap-2">
+                        查看详细数据 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 社区参与 -->
+            <div class="mb-24">
+                <div class="bg-gradient-to-br from-blue-900 to-indigo-900 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden">
+                    <!-- 背景装饰 -->
+                    <div class="absolute top-0 left-0 w-full h-full">
+                        <div class="absolute top-10 right-10 w-40 h-40 bg-white rounded-full opacity-10"></div>
+                        <div class="absolute bottom-10 left-10 w-60 h-60 bg-white rounded-full opacity-10"></div>
+                    </div>
+                    
+                    <div class="relative z-10">
+                        <div class="text-center mb-12 animate-fade-in">
+                            <h2 class="text-4xl font-bold mb-4">加入我们的社区</h2>
+                            <p class="text-xl text-blue-200 max-w-3xl mx-auto">
+                                分享你的故事，参与艺术创作挑战，与全球守护者一起行动
+                            </p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                            <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 card-hover animate-fade-in delay-100">
+                                <div class="text-4xl mb-4">🎨</div>
+                                <h3 class="text-2xl font-bold mb-4">艺术创作挑战</h3>
+                                <p class="text-blue-200 mb-6 leading-relaxed">
+                                    用你的创意描绘中华白海豚的美丽，参与我们的线上艺术展，
+                                    让更多人通过艺术了解白海豚的困境。
+                                </p>
+                                <a href="community.html" class="inline-block bg-white text-blue-900 font-bold py-3 px-8 rounded-full shadow-md hover:shadow-lg transition-all">
+                                    立即参与
+                                </a>
+                            </div>
+                            
+                            <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 card-hover animate-fade-in delay-200">
+                                <div class="text-4xl mb-4">📱</div>
+                                <h3 class="text-2xl font-bold mb-4">AR互动体验</h3>
+                                <p class="text-blue-200 mb-6 leading-relaxed">
+                                    通过增强现实技术，在现实世界中与白海豚互动，
+                                    拍摄创意照片，分享到社交平台，扩大保护影响力。
+                                </p>
+                                <a href="ar-experience.html" class="inline-block bg-white text-blue-900 font-bold py-3 px-8 rounded-full shadow-md hover:shadow-lg transition-all">
+                                    体验AR
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 行动号召 -->
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl font-bold text-blue-900 mb-6">一起守护海洋精灵</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed">
+                    每一个小小的行动，都是对中华白海豚生存希望的延续。
+                    加入我们的数字守护计划，用科技与艺术的力量，
+                    为"海上祥瑞"创造更美好的未来。
+                </p>
+                <button class="btn-primary text-white font-bold py-4 px-16 rounded-full shadow-lg text-lg">
+                    成为守护者
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gradient-to-br from-blue-900 to-indigo-900 text-white py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="text-3xl mr-3">🐬</div>
+                        <span class="text-2xl font-bold">白海豚守护计划</span>
+                    </div>
+                    <p class="text-blue-200 leading-relaxed">
+                        用数字艺术与科技力量，守护中华白海豚的生存家园，
+                        让"海上祥瑞"的传说延续下去。
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">快速链接</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-blue-200 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="art-gallery.html" class="text-blue-200 hover:text-white transition-colors">艺术画廊</a></li>
+                        <li><a href="3d-experience.html" class="text-blue-200 hover:text-white transition-colors">3D体验</a></li>
+                        <li><a href="game.html" class="text-blue-200 hover:text-white transition-colors">游戏</a></li>
+                        <li><a href="community.html" class="text-blue-200 hover:text-white transition-colors">社区</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">资源中心</h3>
+                    <ul class="space-y-3">
+                        <li><a href="data.html" class="text-blue-200 hover:text-white transition-colors">守护数据</a></li>
+                        <li><a href="ar-experience.html" class="text-blue-200 hover:text-white transition-colors">AR体验</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">保护指南</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">教育资源</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">新闻动态</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">联系我们</h3>
+                    <ul class="space-y-3">
+                        <li class="text-blue-200">邮箱：contact@dolphin-protection.org</li>
+                        <li class="text-blue-200">电话：+86 123 4567 8910</li>
+                        <li class="text-blue-200">地址：中国福建省厦门市</li>
+                    </ul>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 9h4v12H2z" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-blue-800 pt-8 text-center">
+                <p class="text-blue-200">© 2026 中华白海豚数字守护计划. 保留所有权利.</p>
+                <p class="text-blue-300 mt-2">本项目旨在参加好创意大赛，推动海洋生态保护</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 共用脚本 -->
+    <script src="assets/js/common.js"></script>
+</body>
+</html>

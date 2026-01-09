@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社区参与 - 隐迹的瑰宝：中华白海豚数字守护计划</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- 共用样式 -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-pale-blue overflow-x-hidden">
+    <!-- 波浪背景 -->
+    <div class="wave-background"></div>
+    
+    <!-- 导航栏 -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="text-2xl">🐬</div>
+                <span>白海豚守护计划</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="art-gallery.html">艺术画廊</a>
+                <a href="3d-experience.html">3D体验</a>
+                <a href="game.html">游戏</a>
+                <a href="community.html" class="active">社区</a>
+                <a href="data.html">数据</a>
+                <a href="ar-experience.html">AR体验</a>
+            </div>
+            <button class="mobile-menu-btn text-blue-900">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 浮动按钮 -->
+    <div class="floating-buttons">
+        <button class="floating-btn w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg" onclick="scrollToTop()" title="回到顶部">
+            ↑
+        </button>
+        <button class="floating-btn w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg" onclick="sharePage()" title="分享页面">
+            📤
+        </button>
+    </div>
+
+    <!-- 鼠标跟随效果 -->
+    <div id="mouse-follow" class="mouse-follow"></div>
+
+    <!-- 社区参与页面内容 -->
+    <section id="community" class="py-16 px-4 sm:px-6 lg:px-8 pt-24">
+        <div class="max-w-7xl mx-auto">
+            <!-- 返回按钮 -->
+            <div class="mb-8">
+                <button class="back-button flex items-center text-blue-900 hover:text-blue-700 transition-colors" onclick="goBack()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    返回
+                </button>
+            </div>
+            
+            <div class="text-center mb-16 animate-fade-in">
+                <h1 class="text-4xl md:text-5xl font-bold text-blue-900 mb-4 font-heading tracking-tight">社区参与</h1>
+                <p class="text-xl text-gray-dark leading-relaxed tracking-wide">分享你的故事，参与艺术创作挑战，一起守护中华白海豚</p>
+                <div class="mt-8 inline-block">
+                    <div class="w-24 h-1 bg-gradient-to-r from-accent-color to-secondary-color mx-auto mb-4 rounded-full"></div>
+                </div>
+            </div>
+
+            <!-- 社区活动 -->
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-lg mb-16 animate-fade-in">
+                <h2 class="text-2xl md:text-3xl font-bold text-secondary-color mb-6">社区活动</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card-hover bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 transition-all duration-300 hover:bg-white/10 hover:shadow-xl relative overflow-hidden group">
+                        <!-- 装饰元素 -->
+                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-secondary-color/20 rounded-full blur-2xl group-hover:bg-secondary-color/30 transition-all duration-500"></div>
+                        <div class="text-5xl mb-4 text-accent-color animate-bounce-slow">🎨</div>
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-3">艺术创作挑战</h3>
+                        <p class="text-light-blue mb-4 relative z-10">用你的创意描绘中华白海豚的美丽，参与我们的线上艺术展，赢取精美奖品</p>
+                        <div class="flex justify-between items-center relative z-10">
+                            <span class="text-sm text-white/70">截止日期：2026年2月1日</span>
+                            <button class="btn-primary bg-gradient-to-r from-secondary-color to-accent-color text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                                立即参与
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-hover bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 transition-all duration-300 hover:bg-white/10 hover:shadow-xl relative overflow-hidden group">
+                        <!-- 装饰元素 -->
+                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-accent-color/20 rounded-full blur-2xl group-hover:bg-accent-color/30 transition-all duration-500"></div>
+                        <div class="text-5xl mb-4 text-accent-color animate-bounce-slow">📸</div>
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-3">摄影征集</h3>
+                        <p class="text-light-blue mb-4 relative z-10">分享你拍摄的海洋和白海豚照片，记录海洋之美，展示给全世界</p>
+                        <div class="flex justify-between items-center relative z-10">
+                            <span class="text-sm text-white/70">截止日期：2026年2月15日</span>
+                            <button class="btn-primary bg-gradient-to-r from-secondary-color to-accent-color text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                                上传照片
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 社区故事 -->
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-lg mb-16 animate-fade-in">
+                <h2 class="text-2xl md:text-3xl font-bold text-secondary-color mb-6">社区故事</h2>
+                <div class="space-y-6">
+                    <div class="story-item bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 transition-all duration-300 hover:bg-white/10 hover:shadow-lg relative overflow-hidden group">
+                        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-secondary-color/10 rounded-full blur-2xl group-hover:bg-secondary-color/20 transition-all duration-500"></div>
+                        <div class="flex items-start relative z-10">
+                            <div class="w-14 h-14 bg-gradient-to-br from-secondary-color to-accent-color rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 shadow-lg">
+                                李
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-lg md:text-xl font-bold text-white mb-2">我的白海豚遇见记</h3>
+                                <p class="text-light-blue mb-3">去年夏天，我在厦门海边看到了一群中华白海豚，它们在海面上跳跃，非常美丽。从那以后，我就开始关注白海豚的保护工作，经常参加海滩清洁活动。</p>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-sm text-white/70">2026年1月1日</div>
+                                    <div class="flex items-center gap-3">
+                                        <button class="text-white/70 hover:text-white transition-colors">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                            </svg>
+                                        </button>
+                                        <button class="text-white/70 hover:text-white transition-colors">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-item bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 transition-all duration-300 hover:bg-white/10 hover:shadow-lg relative overflow-hidden group">
+                        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-accent-color/10 rounded-full blur-2xl group-hover:bg-accent-color/20 transition-all duration-500"></div>
+                        <div class="flex items-start relative z-10">
+                            <div class="w-14 h-14 bg-gradient-to-br from-accent-color to-secondary-color rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 shadow-lg">
+                                王
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-lg md:text-xl font-bold text-white mb-2">海洋保护志愿者的一天</h3>
+                                <p class="text-light-blue mb-3">作为海洋保护志愿者，我经常参与海滩清洁活动。看到越来越多的人加入我们，我感到非常欣慰。希望更多人关注海洋生态保护，为白海豚创造更好的生存环境。</p>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-sm text-white/70">2025年12月25日</div>
+                                    <div class="flex items-center gap-3">
+                                        <button class="text-white/70 hover:text-white transition-colors">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                            </svg>
+                                        </button>
+                                        <button class="text-white/70 hover:text-white transition-colors">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-item bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 transition-all duration-300 hover:bg-white/10 hover:shadow-lg relative overflow-hidden group">
+                        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-secondary-color/10 rounded-full blur-2xl group-hover:bg-secondary-color/20 transition-all duration-500"></div>
+                        <div class="flex items-start relative z-10">
+                            <div class="w-14 h-14 bg-gradient-to-br from-primary-color to-accent-color rounded-full flex items-center justify-center text-white font-bold text-xl mr-4 shadow-lg">
+                                张
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-lg md:text-xl font-bold text-white mb-2">艺术与环保的结合</h3>
+                                <p class="text-light-blue mb-3">我是一名艺术学生，最近创作了一系列以白海豚为主题的油画。通过艺术的形式，我希望能让更多人了解白海豚的现状，加入保护行列。这些作品已经在学校展览中获得了好评。</p>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-sm text-white/70">2025年12月20日</div>
+                                    <div class="flex items-center gap-3">
+                                        <button class="text-white/70 hover:text-white transition-colors">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                            </svg>
+                                        </button>
+                                        <button class="text-white/70 hover:text-white transition-colors">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 text-center">
+                    <button class="btn-primary bg-gradient-to-r from-secondary-color to-accent-color text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        查看更多故事
+                    </button>
+                </div>
+            </div>
+
+            <!-- 分享你的故事 -->
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-lg animate-fade-in">
+                <h2 class="text-2xl md:text-3xl font-bold text-secondary-color mb-6">分享你的故事</h2>
+                <form class="space-y-4 max-w-2xl mx-auto" onsubmit="submitStory(event)">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-light-blue mb-1">你的名字</label>
+                        <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full text-white placeholder-light-blue focus:outline-none focus:ring-2 focus:ring-accent-color transition-all duration-300 focus:border-transparent">
+                    </div>
+                    <div>
+                        <label for="title" class="block text-sm font-medium text-light-blue mb-1">故事标题</label>
+                        <input type="text" id="title" name="title" class="w-full px-4 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full text-white placeholder-light-blue focus:outline-none focus:ring-2 focus:ring-accent-color transition-all duration-300 focus:border-transparent">
+                    </div>
+                    <div>
+                        <label for="story" class="block text-sm font-medium text-light-blue mb-1">你的故事</label>
+                        <textarea id="story" name="story" rows="4" class="w-full px-4 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-white placeholder-light-blue focus:outline-none focus:ring-2 focus:ring-accent-color transition-all duration-300 focus:border-transparent"></textarea>
+                    </div>
+                    <div>
+                        <label for="image" class="block text-sm font-medium text-light-blue mb-1">上传图片（可选）</label>
+                        <input type="file" id="image" name="image" accept="image/*" class="w-full px-4 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full text-white placeholder-light-blue focus:outline-none focus:ring-2 focus:ring-accent-color transition-all duration-300 focus:border-transparent">
+                    </div>
+                    <button type="submit" class="btn-primary bg-gradient-to-r from-secondary-color to-accent-color text-white font-bold py-3 px-8 rounded-full shadow-lg w-full md:w-auto transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        分享故事
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gradient-to-br from-blue-900 to-indigo-900 text-white py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="text-3xl mr-3">🐬</div>
+                        <span class="text-2xl font-bold">白海豚守护计划</span>
+                    </div>
+                    <p class="text-blue-200 leading-relaxed">
+                        用数字艺术与科技力量，守护中华白海豚的生存家园，
+                        让"海上祥瑞"的传说延续下去。
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">快速链接</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-blue-200 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="art-gallery.html" class="text-blue-200 hover:text-white transition-colors">艺术画廊</a></li>
+                        <li><a href="3d-experience.html" class="text-blue-200 hover:text-white transition-colors">3D体验</a></li>
+                        <li><a href="game.html" class="text-blue-200 hover:text-white transition-colors">游戏</a></li>
+                        <li><a href="community.html" class="text-blue-200 hover:text-white transition-colors">社区</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">资源中心</h3>
+                    <ul class="space-y-3">
+                        <li><a href="data.html" class="text-blue-200 hover:text-white transition-colors">守护数据</a></li>
+                        <li><a href="ar-experience.html" class="text-blue-200 hover:text-white transition-colors">AR体验</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">保护指南</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">教育资源</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">新闻动态</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">联系我们</h3>
+                    <ul class="space-y-3">
+                        <li class="text-blue-200">邮箱：contact@dolphin-protection.org</li>
+                        <li class="text-blue-200">电话：+86 123 4567 8910</li>
+                        <li class="text-blue-200">地址：中国福建省厦门市</li>
+                    </ul>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 9h4v12H2z" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-blue-800 pt-8 text-center">
+                <p class="text-blue-200">© 2026 中华白海豚数字守护计划. 保留所有权利.</p>
+                <p class="text-blue-300 mt-2">本项目旨在参加好创意大赛，推动海洋生态保护</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 共用脚本 -->
+    <script src="assets/js/common.js"></script>
+    
+    <!-- 社区页面脚本 -->
+    <script>
+        // 提交故事
+        function submitStory(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const title = document.getElementById('title').value;
+            const story = document.getElementById('story').value;
+            
+            if (!name || !title || !story) {
+                showNotification('请填写所有必填字段', 'warning');
+                return;
+            }
+            
+            // 模拟提交
+            showNotification('故事提交成功！感谢你的分享', 'success');
+            
+            // 重置表单
+            event.target.reset();
+        }
+
+        // 初始化鼠标跟随和滚动动画
+        document.addEventListener('DOMContentLoaded', function() {
+            initMouseFollow();
+            initScrollAnimations();
+        });
+    </script>
+</body>
+</html>

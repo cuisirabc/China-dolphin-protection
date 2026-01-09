@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海洋守护者游戏 - 中华白海豚数字守护计划</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- 共用样式 -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-pale-blue overflow-x-hidden">
+    <!-- 波浪背景 -->
+    <div class="wave-background"></div>
+    
+    <!-- 导航栏 -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="text-2xl">🐬</div>
+                <span>白海豚守护计划</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="art-gallery.html">艺术画廊</a>
+                <a href="3d-experience.html">3D体验</a>
+                <a href="game.html" class="active">游戏</a>
+                <a href="community.html">社区</a>
+                <a href="data.html">数据</a>
+                <a href="ar-experience.html">AR体验</a>
+            </div>
+            <button class="mobile-menu-btn text-blue-900">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 浮动按钮 -->
+    <div class="floating-buttons">
+        <button class="floating-btn w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg" onclick="scrollToTop()" title="回到顶部">
+            ↑
+        </button>
+        <button class="floating-btn w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg" onclick="sharePage()" title="分享页面">
+            📤
+        </button>
+    </div>
+
+    <!-- 鼠标跟随效果 -->
+    <div id="mouse-follow" class="mouse-follow"></div>
+
+    <!-- 海洋守护者游戏 -->
+    <section id="ocean-guardian" class="py-16 px-4 sm:px-6 lg:px-8 pt-24">
+        <div class="max-w-7xl mx-auto">
+            <!-- 返回按钮 -->
+            <div class="mb-8">
+                <button class="back-button flex items-center text-blue-900 hover:text-blue-700 transition-colors" onclick="goBack()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    返回
+                </button>
+            </div>
+            
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-blue-900 mb-4 font-heading tracking-tight">海洋守护者游戏</h2>
+                <p class="text-xl text-gray-dark leading-relaxed tracking-wide">帮助白海豚避开威胁，守护海洋家园</p>
+                <div class="mt-8 inline-block">
+                    <div class="w-24 h-1 bg-gradient-to-r from-accent-color to-secondary-color mx-auto mb-4 rounded-full"></div>
+                </div>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-lg mb-16 animate-fade-in">
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-full md:w-1/2">
+                        <h3 class="text-2xl md:text-3xl font-bold text-secondary-color mb-6">游戏说明</h3>
+                        <div class="space-y-4 text-lg text-light-blue">
+                            <p class="flex items-center"><span class="text-white mr-2">•</span> 使用方向键或触摸屏幕控制白海豚移动</p>
+                            <p class="flex items-center"><span class="text-white mr-2">•</span> 避开红色的威胁（船只、渔网、污染）</p>
+                            <p class="flex items-center"><span class="text-white mr-2">•</span> 收集蓝色的能量球补充生命值</p>
+                            <p class="flex items-center"><span class="text-white mr-2">•</span> 坚持时间越长，得分越高</p>
+                        </div>
+                        <div class="mt-8 space-y-4">
+                            <h4 class="text-xl font-semibold text-accent-color mb-4">威胁类型</h4>
+                            <div class="flex items-center gap-3 p-3 bg-white/5 backdrop-blur-sm rounded-lg card-hover transition-all duration-300 hover:bg-white/10">
+                                <div class="w-10 h-10 bg-secondary-color rounded-full flex items-center justify-center text-white font-bold shadow-lg">🚢</div>
+                                <p class="text-light-blue">船只撞击</p>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-white/5 backdrop-blur-sm rounded-lg card-hover transition-all duration-300 hover:bg-white/10">
+                                <div class="w-10 h-10 bg-secondary-color rounded-full flex items-center justify-center text-white font-bold shadow-lg">🎣</div>
+                                <p class="text-light-blue">渔网缠绕</p>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-white/5 backdrop-blur-sm rounded-lg card-hover transition-all duration-300 hover:bg-white/10">
+                                <div class="w-10 h-10 bg-secondary-color rounded-full flex items-center justify-center text-white font-bold shadow-lg">💩</div>
+                                <p class="text-light-blue">海洋污染</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <div id="game-container" class="w-full h-96 bg-gradient-to-br from-blue-900/50 to-indigo-900/50 rounded-xl overflow-hidden relative shadow-xl border border-white/10">
+                            <!-- 游戏背景装饰 -->
+                            <div class="absolute inset-0 overflow-hidden">
+                                <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1)_0%,transparent_70%)]"></div>
+                                <!-- 波浪效果 -->
+                                <div class="absolute bottom-0 left-0 w-full h-16 overflow-hidden">
+                                    <div class="absolute bottom-0 left-0 w-[200%] h-16 animate-wave">
+                                        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-full text-blue-800/30">
+                                            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="fill-current"></path>
+                                            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="fill-current"></path>
+                                            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="fill-current"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute top-4 left-4 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-white font-bold shadow-md">
+                                得分: <span id="game-score">0</span>
+                            </div>
+                            <div class="absolute top-4 right-4 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-white font-bold shadow-md">
+                                生命: <span id="game-life">3</span>
+                            </div>
+                            <div id="game-start" class="absolute inset-0 flex items-center justify-center bg-primary-color/70 backdrop-blur-sm z-10">
+                                <div class="text-center animate-fade-in">
+                                    <div class="text-7xl mb-4 animate-bounce-slow">🎮</div>
+                                    <h3 class="text-2xl md:text-3xl font-bold mb-4 text-white">海洋守护者</h3>
+                                    <p class="text-light-blue mb-6">点击开始游戏</p>
+                                    <button id="start-game" class="btn-primary bg-gradient-to-r from-secondary-color to-accent-color text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                                        开始游戏
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="game-over" class="absolute inset-0 flex items-center justify-center bg-primary-color/70 backdrop-blur-sm z-10 hidden">
+                                <div class="text-center animate-fade-in">
+                                    <div class="text-7xl mb-4 animate-bounce-slow">🏆</div>
+                                    <h3 class="text-2xl md:text-3xl font-bold mb-4 text-white">游戏结束</h3>
+                                    <p class="text-light-blue mb-2">最终得分: <span id="final-score">0</span></p>
+                                    <p class="text-light-blue mb-6">你守护了白海豚 <span id="survival-time">0</span> 秒</p>
+                                    <button id="restart-game" class="btn-primary bg-gradient-to-r from-secondary-color to-accent-color text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                                        重新开始
+                                    </button>
+                                </div>
+                            </div>
+                            <canvas id="game-canvas" class="w-full h-full"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 游戏排行榜 -->
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-lg animate-fade-in">
+                <h3 class="text-2xl md:text-3xl font-bold text-white mb-6 text-center">守护者排行榜</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="bg-white/20 backdrop-blur-sm">
+                                <th class="py-4 px-6 rounded-tl-lg text-light-blue">排名</th>
+                                <th class="py-4 px-6 text-light-blue">玩家</th>
+                                <th class="py-4 px-6 text-light-blue">得分</th>
+                                <th class="py-4 px-6 rounded-tr-lg text-light-blue">生存时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-white/10 hover:bg-white/5 transition-colors">
+                                <td class="py-4 px-6 font-bold text-white">1</td>
+                                <td class="py-4 px-6 text-light-blue">海洋卫士</td>
+                                <td class="py-4 px-6 font-bold text-accent-color">2500</td>
+                                <td class="py-4 px-6 text-light-blue">85秒</td>
+                            </tr>
+                            <tr class="border-b border-white/10 hover:bg-white/5 transition-colors">
+                                <td class="py-4 px-6 font-bold text-white">2</td>
+                                <td class="py-4 px-6 text-light-blue">海豚守护者</td>
+                                <td class="py-4 px-6 font-bold text-accent-color">1850</td>
+                                <td class="py-4 px-6 text-light-blue">62秒</td>
+                            </tr>
+                            <tr class="border-b border-white/10 hover:bg-white/5 transition-colors">
+                                <td class="py-4 px-6 font-bold text-white">3</td>
+                                <td class="py-4 px-6 text-light-blue">蓝色天使</td>
+                                <td class="py-4 px-6 font-bold text-accent-color">1200</td>
+                                <td class="py-4 px-6 text-light-blue">45秒</td>
+                            </tr>
+                            <tr class="border-b border-white/10 hover:bg-white/5 transition-colors">
+                                <td class="py-4 px-6 font-bold text-white">4</td>
+                                <td class="py-4 px-6 text-light-blue">海洋之心</td>
+                                <td class="py-4 px-6 font-bold text-accent-color">950</td>
+                                <td class="py-4 px-6 text-light-blue">38秒</td>
+                            </tr>
+                            <tr class="hover:bg-white/5 transition-colors">
+                                <td class="py-4 px-6 font-bold text-white rounded-bl-lg">5</td>
+                                <td class="py-4 px-6 text-light-blue">白海豚之友</td>
+                                <td class="py-4 px-6 font-bold text-accent-color">720</td>
+                                <td class="py-4 px-6 text-light-blue rounded-br-lg">30秒</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gradient-to-br from-blue-900 to-indigo-900 text-white py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="text-3xl mr-3">🐬</div>
+                        <span class="text-2xl font-bold">白海豚守护计划</span>
+                    </div>
+                    <p class="text-blue-200 leading-relaxed">
+                        用数字艺术与科技力量，守护中华白海豚的生存家园，
+                        让"海上祥瑞"的传说延续下去。
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">快速链接</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-blue-200 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="art-gallery.html" class="text-blue-200 hover:text-white transition-colors">艺术画廊</a></li>
+                        <li><a href="3d-experience.html" class="text-blue-200 hover:text-white transition-colors">3D体验</a></li>
+                        <li><a href="game.html" class="text-blue-200 hover:text-white transition-colors">游戏</a></li>
+                        <li><a href="community.html" class="text-blue-200 hover:text-white transition-colors">社区</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">资源中心</h3>
+                    <ul class="space-y-3">
+                        <li><a href="data.html" class="text-blue-200 hover:text-white transition-colors">守护数据</a></li>
+                        <li><a href="ar-experience.html" class="text-blue-200 hover:text-white transition-colors">AR体验</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">保护指南</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">教育资源</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">新闻动态</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">联系我们</h3>
+                    <ul class="space-y-3">
+                        <li class="text-blue-200">邮箱：contact@dolphin-protection.org</li>
+                        <li class="text-blue-200">电话：+86 123 4567 8910</li>
+                        <li class="text-blue-200">地址：中国福建省厦门市</li>
+                    </ul>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 9h4v12H2z" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-blue-800 pt-8 text-center">
+                <p class="text-blue-200">© 2026 中华白海豚数字守护计划. 保留所有权利.</p>
+                <p class="text-blue-300 mt-2">本项目旨在参加好创意大赛，推动海洋生态保护</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 共用脚本 -->
+    <script src="assets/js/common.js"></script>
+    
+    <!-- 游戏脚本 -->
+    <script>
+        // 海洋守护者游戏
+        let gameInterval;
+        let gameScore = 0;
+        let gameLife = 3;
+        let survivalTime = 0;
+        let gameRunning = false;
+        
+        // 游戏元素
+        const gameCanvas = document.getElementById('game-canvas');
+        const gameScoreElement = document.getElementById('game-score');
+        const gameLifeElement = document.getElementById('game-life');
+        const gameStartElement = document.getElementById('game-start');
+        const gameOverElement = document.getElementById('game-over');
+        const finalScoreElement = document.getElementById('final-score');
+        const survivalTimeElement = document.getElementById('survival-time');
+        
+        // 游戏对象
+        const dolphin = {
+            x: 0,
+            y: 0,
+            width: 40,
+            height: 20,
+            speed: 5
+        };
+        
+        const threats = [];
+        const powerUps = [];
+        
+        // 游戏控制
+        let keys = {
+            up: false,
+            down: false,
+            left: false,
+            right: false
+        };
+        
+        // 触摸控制
+        let touchStartX = 0;
+        let touchStartY = 0;
+        
+        // 初始化游戏
+        if (gameCanvas) {
+            const ctx = gameCanvas.getContext('2d');
+            
+            // 设置画布大小
+            function resizeCanvas() {
+                const container = document.getElementById('game-container');
+                gameCanvas.width = container.clientWidth;
+                gameCanvas.height = container.clientHeight;
+                dolphin.x = gameCanvas.width / 2 - dolphin.width / 2;
+                dolphin.y = gameCanvas.height / 2 - dolphin.height / 2;
+            }
+            
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            // 键盘控制
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowUp') keys.up = true;
+                if (e.key === 'ArrowDown') keys.down = true;
+                if (e.key === 'ArrowLeft') keys.left = true;
+                if (e.key === 'ArrowRight') keys.right = true;
+            });
+            
+            document.addEventListener('keyup', function(e) {
+                if (e.key === 'ArrowUp') keys.up = false;
+                if (e.key === 'ArrowDown') keys.down = false;
+                if (e.key === 'ArrowLeft') keys.left = false;
+                if (e.key === 'ArrowRight') keys.right = false;
+            });
+            
+            // 触摸控制
+            gameCanvas.addEventListener('touchstart', function(e) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            });
+            
+            gameCanvas.addEventListener('touchmove', function(e) {
+                if (!gameRunning) return;
+                
+                const touchX = e.touches[0].clientX;
+                const touchY = e.touches[0].clientY;
+                const deltaX = touchX - touchStartX;
+                const deltaY = touchY - touchStartY;
+                
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    // 水平移动
+                    dolphin.x += deltaX * 0.1;
+                } else {
+                    // 垂直移动
+                    dolphin.y += deltaY * 0.1;
+                }
+                
+                // 更新触摸起始位置
+                touchStartX = touchX;
+                touchStartY = touchY;
+                
+                // 边界检查
+                boundaryCheck();
+            });
+            
+            // 边界检查
+            function boundaryCheck() {
+                if (dolphin.x < 0) dolphin.x = 0;
+                if (dolphin.x > gameCanvas.width - dolphin.width) dolphin.x = gameCanvas.width - dolphin.width;
+                if (dolphin.y < 0) dolphin.y = 0;
+                if (dolphin.y > gameCanvas.height - dolphin.height) dolphin.y = gameCanvas.height - dolphin.height;
+            }
+            
+            // 生成威胁
+            function generateThreat() {
+                if (!gameRunning) return;
+                
+                const threatTypes = ['ship', 'net', 'pollution'];
+                const threatType = threatTypes[Math.floor(Math.random() * threatTypes.length)];
+                
+                let threatWidth, threatHeight, threatSpeed;
+                
+                switch (threatType) {
+                    case 'ship':
+                        threatWidth = 60;
+                        threatHeight = 30;
+                        threatSpeed = 3;
+                        break;
+                    case 'net':
+                        threatWidth = 50;
+                        threatHeight = 50;
+                        threatSpeed = 2;
+                        break;
+                    case 'pollution':
+                        threatWidth = 40;
+                        threatHeight = 40;
+                        threatSpeed = 2.5;
+                        break;
+                }
+                
+                threats.push({
+                    x: gameCanvas.width + Math.random() * 100,
+                    y: Math.random() * (gameCanvas.height - threatHeight),
+                    width: threatWidth,
+                    height: threatHeight,
+                    speed: threatSpeed,
+                    type: threatType
+                });
+            }
+            
+            // 生成能量球
+            function generatePowerUp() {
+                if (!gameRunning) return;
+                
+                powerUps.push({
+                    x: gameCanvas.width + Math.random() * 100,
+                    y: Math.random() * (gameCanvas.height - 30),
+                    width: 30,
+                    height: 30,
+                    speed: 2
+                });
+            }
+            
+            // 绘制游戏
+            function drawGame() {
+                ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+                
+                // 绘制背景
+                ctx.fillStyle = '#1e40af';
+                ctx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
+                
+                // 绘制波浪
+                ctx.fillStyle = '#3b82f6';
+                for (let i = 0; i < 5; i++) {
+                    ctx.beginPath();
+                    ctx.arc(i * 150, gameCanvas.height - 50, 30, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                
+                // 绘制白海豚
+                ctx.fillStyle = '#f472b6';
+                ctx.beginPath();
+                ctx.ellipse(dolphin.x + dolphin.width / 2, dolphin.y + dolphin.height / 2, dolphin.width / 2, dolphin.height / 2, 0, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // 绘制眼睛
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.arc(dolphin.x + dolphin.width * 0.7, dolphin.y + dolphin.height * 0.4, 3, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // 绘制背鳍
+                ctx.fillStyle = '#f472b6';
+                ctx.beginPath();
+                ctx.moveTo(dolphin.x + dolphin.width * 0.5, dolphin.y);
+                ctx.lineTo(dolphin.x + dolphin.width * 0.3, dolphin.y - 10);
+                ctx.lineTo(dolphin.x + dolphin.width * 0.7, dolphin.y - 10);
+                ctx.closePath();
+                ctx.fill();
+                
+                // 绘制威胁
+                threats.forEach((threat, index) => {
+                    // 移动威胁
+                    threat.x -= threat.speed;
+                    
+                    // 绘制威胁
+                    switch (threat.type) {
+                        case 'ship':
+                            ctx.fillStyle = '#ef4444';
+                            ctx.fillRect(threat.x, threat.y, threat.width, threat.height);
+                            ctx.fillStyle = '#ffffff';
+                            ctx.font = '16px Arial';
+                            ctx.fillText('🚢', threat.x + 10, threat.y + 22);
+                            break;
+                        case 'net':
+                            ctx.strokeStyle = '#ef4444';
+                            ctx.lineWidth = 2;
+                            ctx.strokeRect(threat.x, threat.y, threat.width, threat.height);
+                            ctx.fillStyle = '#ffffff';
+                            ctx.font = '16px Arial';
+                            ctx.fillText('🎣', threat.x + 10, threat.y + 22);
+                            break;
+                        case 'pollution':
+                            ctx.fillStyle = '#ef4444';
+                            ctx.beginPath();
+                            ctx.arc(threat.x + threat.width / 2, threat.y + threat.height / 2, threat.width / 2, 0, Math.PI * 2);
+                            ctx.fill();
+                            ctx.fillStyle = '#ffffff';
+                            ctx.font = '16px Arial';
+                            ctx.fillText('💩', threat.x + 5, threat.y + 22);
+                            break;
+                    }
+                    
+                    // 移除超出边界的威胁
+                    if (threat.x < -threat.width) {
+                        threats.splice(index, 1);
+                    }
+                    
+                    // 碰撞检测
+                    if (
+                        dolphin.x < threat.x + threat.width &&
+                        dolphin.x + dolphin.width > threat.x &&
+                        dolphin.y < threat.y + threat.height &&
+                        dolphin.y + dolphin.height > threat.y
+                    ) {
+                        gameLife--;
+                        gameLifeElement.textContent = gameLife;
+                        threats.splice(index, 1);
+                        
+                        if (gameLife <= 0) {
+                            endGame();
+                        } else {
+                            showNotification('小心！白海豚受到了伤害', 'warning');
+                        }
+                    }
+                });
+                
+                // 绘制能量球
+                powerUps.forEach((powerUp, index) => {
+                    // 移动能量球
+                    powerUp.x -= powerUp.speed;
+                    
+                    // 绘制能量球
+                    ctx.fillStyle = '#06b6d4';
+                    ctx.beginPath();
+                    ctx.arc(powerUp.x + powerUp.width / 2, powerUp.y + powerUp.height / 2, powerUp.width / 2, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = '16px Arial';
+                    ctx.fillText('⚡', powerUp.x + 5, powerUp.y + 22);
+                    
+                    // 移除超出边界的能量球
+                    if (powerUp.x < -powerUp.width) {
+                        powerUps.splice(index, 1);
+                    }
+                    
+                    // 碰撞检测
+                    if (
+                        dolphin.x < powerUp.x + powerUp.width &&
+                        dolphin.x + dolphin.width > powerUp.x &&
+                        dolphin.y < powerUp.y + powerUp.height &&
+                        dolphin.y + dolphin.height > powerUp.y
+                    ) {
+                        gameScore += 100;
+                        gameScoreElement.textContent = gameScore;
+                        powerUps.splice(index, 1);
+                        showNotification('获得能量！', 'success');
+                    }
+                });
+            }
+            
+            // 更新游戏
+            function updateGame() {
+                if (!gameRunning) return;
+                
+                // 移动白海豚
+                if (keys.up) dolphin.y -= dolphin.speed;
+                if (keys.down) dolphin.y += dolphin.speed;
+                if (keys.left) dolphin.x -= dolphin.speed;
+                if (keys.right) dolphin.x += dolphin.speed;
+                
+                // 边界检查
+                boundaryCheck();
+                
+                // 增加得分和生存时间
+                gameScore += 1;
+                gameScoreElement.textContent = gameScore;
+                survivalTime++;
+                
+                // 绘制游戏
+                drawGame();
+            }
+            
+            // 开始游戏
+            function startGame() {
+                // 重置游戏状态
+                gameScore = 0;
+                gameLife = 3;
+                survivalTime = 0;
+                threats.length = 0;
+                powerUps.length = 0;
+                gameRunning = true;
+                
+                // 重置位置
+                dolphin.x = gameCanvas.width / 2 - dolphin.width / 2;
+                dolphin.y = gameCanvas.height / 2 - dolphin.height / 2;
+                
+                // 更新UI
+                gameScoreElement.textContent = gameScore;
+                gameLifeElement.textContent = gameLife;
+                gameStartElement.classList.add('hidden');
+                gameOverElement.classList.add('hidden');
+                
+                // 开始游戏循环
+                clearInterval(gameInterval);
+                gameInterval = setInterval(updateGame, 20);
+                
+                // 生成威胁和能量球
+                setInterval(generateThreat, 1000);
+                setInterval(generatePowerUp, 3000);
+                
+                showNotification('游戏开始！保护白海豚，避开威胁', 'info');
+            }
+            
+            // 结束游戏
+            function endGame() {
+                gameRunning = false;
+                clearInterval(gameInterval);
+                
+                // 更新UI
+                finalScoreElement.textContent = gameScore;
+                survivalTimeElement.textContent = survivalTime;
+                gameOverElement.classList.remove('hidden');
+                
+                showNotification(`游戏结束！你的得分：${gameScore}`, 'info');
+            }
+            
+            // 事件监听
+            document.getElementById('start-game')?.addEventListener('click', startGame);
+            document.getElementById('restart-game')?.addEventListener('click', startGame);
+        }
+
+        // 初始化鼠标跟随和滚动动画
+        document.addEventListener('DOMContentLoaded', function() {
+            initMouseFollow();
+            initScrollAnimations();
+        });
+    </script>
+</body>
+</html>

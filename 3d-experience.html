@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D白海豚互动体验 - 中华白海豚数字守护计划</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Three.js -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <!-- 共用样式 -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-pale-blue overflow-x-hidden">
+    <!-- 波浪背景 -->
+    <div class="wave-background"></div>
+    
+    <!-- 导航栏 -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="text-2xl">🐬</div>
+                <span>白海豚守护计划</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="art-gallery.html">艺术画廊</a>
+                <a href="3d-experience.html" class="active">3D体验</a>
+                <a href="game.html">游戏</a>
+                <a href="community.html">社区</a>
+                <a href="data.html">数据</a>
+                <a href="ar-experience.html">AR体验</a>
+            </div>
+            <button class="mobile-menu-btn text-blue-900">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 浮动按钮 -->
+    <div class="floating-buttons">
+        <button class="floating-btn w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg" onclick="scrollToTop()" title="回到顶部">
+            ↑
+        </button>
+        <button class="floating-btn w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg" onclick="sharePage()" title="分享页面">
+            📤
+        </button>
+    </div>
+
+    <!-- 鼠标跟随效果 -->
+    <div id="mouse-follow" class="mouse-follow"></div>
+
+    <!-- 3D白海豚互动体验 -->
+    <section id="3d-experience" class="py-16 px-4 sm:px-6 lg:px-8 pt-24">
+        <div class="max-w-7xl mx-auto">
+            <!-- 返回按钮 -->
+            <div class="mb-8">
+                <button class="back-button flex items-center text-blue-900 hover:text-blue-700 transition-colors" onclick="goBack()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    返回
+                </button>
+            </div>
+            
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-blue-900 mb-4">3D白海豚互动体验</h2>
+                <p class="text-xl text-gray-dark">近距离观察中华白海豚的美丽身姿</p>
+                <div class="mt-8 inline-block">
+                    <div class="w-24 h-1 bg-gradient-to-r from-accent-color to-secondary-color mx-auto mb-4 rounded-full"></div>
+                </div>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-lg mb-16 animate-fade-in">
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-full md:w-1/2">
+                        <h3 class="text-2xl md:text-3xl font-bold mb-6 text-secondary-color">与白海豚亲密接触</h3>
+                        <div class="space-y-4 text-lg text-light-blue">
+                            <p class="flex items-center"><span class="text-white mr-2">•</span> 鼠标拖动：旋转模型</p>
+                            <p class="flex items-center"><span class="text-white mr-2">•</span> 滚轮滚动：缩放模型</p>
+                            <p class="flex items-center"><span class="text-white mr-2">•</span> 点击模型：了解白海豚的身体结构</p>
+                            <p class="flex items-center"><span class="text-white mr-2">•</span> 空格键：重置视角</p>
+                        </div>
+                        <div class="mt-8 p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
+                            <h4 class="text-xl font-semibold mb-4 text-accent-color">白海豚小知识</h4>
+                            <p class="text-light-blue">中华白海豚是国家一级保护动物，成年后会变成粉红色，被渔民称为"妈祖鱼"。它们智商高，有复杂的社会结构，是海洋生态系统健康的重要指标。</p>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <div id="dolphin-3d-container" class="w-full h-96 bg-gradient-to-br from-blue-900/50 to-indigo-900/50 rounded-xl overflow-hidden shadow-xl border border-white/10 relative">
+                            <!-- 背景装饰 -->
+                            <div class="absolute inset-0 overflow-hidden">
+                                <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1)_0%,transparent_70%)]"></div>
+                                <div class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-blue-900/80 to-transparent"></div>
+                                <!-- 波浪效果 -->
+                                <div class="absolute bottom-0 left-0 w-full h-16 overflow-hidden">
+                                    <div class="absolute bottom-0 left-0 w-[200%] h-16 animate-wave">
+                                        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-full text-blue-800/30">
+                                            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="fill-current"></path>
+                                            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="fill-current"></path>
+                                            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="fill-current"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 3D模型容器 -->
+                            <div class="w-full h-full relative z-10 flex items-center justify-center">
+                                <div class="text-center text-white">
+                                    <div class="text-6xl mb-4 animate-bounce-slow">🐬</div>
+                                    <p class="text-light-blue">加载3D模型中...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AR体验入口 -->
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-lg text-center animate-fade-in">
+                <h3 class="text-2xl md:text-3xl font-bold text-white mb-6">AR体验</h3>
+                <p class="text-xl mb-8 text-light-blue">通过手机摄像头，在现实世界中看到白海豚</p>
+                <a href="ar-experience.html" class="btn-primary bg-gradient-to-r from-secondary-color to-accent-color text-white font-bold py-3 px-8 rounded-full shadow-lg inline-block transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                    开始AR体验
+                </a>
+                <p class="mt-4 text-sm text-white/70">支持iOS 11+和Android 8+设备</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gradient-to-br from-blue-900 to-indigo-900 text-white py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="text-3xl mr-3">🐬</div>
+                        <span class="text-2xl font-bold">白海豚守护计划</span>
+                    </div>
+                    <p class="text-blue-200 leading-relaxed">
+                        用数字艺术与科技力量，守护中华白海豚的生存家园，
+                        让"海上祥瑞"的传说延续下去。
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">快速链接</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-blue-200 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="art-gallery.html" class="text-blue-200 hover:text-white transition-colors">艺术画廊</a></li>
+                        <li><a href="3d-experience.html" class="text-blue-200 hover:text-white transition-colors">3D体验</a></li>
+                        <li><a href="game.html" class="text-blue-200 hover:text-white transition-colors">游戏</a></li>
+                        <li><a href="community.html" class="text-blue-200 hover:text-white transition-colors">社区</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">资源中心</h3>
+                    <ul class="space-y-3">
+                        <li><a href="data.html" class="text-blue-200 hover:text-white transition-colors">守护数据</a></li>
+                        <li><a href="ar-experience.html" class="text-blue-200 hover:text-white transition-colors">AR体验</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">保护指南</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">教育资源</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">新闻动态</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">联系我们</h3>
+                    <ul class="space-y-3">
+                        <li class="text-blue-200">邮箱：contact@dolphin-protection.org</li>
+                        <li class="text-blue-200">电话：+86 123 4567 8910</li>
+                        <li class="text-blue-200">地址：中国福建省厦门市</li>
+                    </ul>
+                    <div class="mt-6 flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 9h4v12H2z" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-blue-800 pt-8 text-center">
+                <p class="text-blue-200">© 2026 中华白海豚数字守护计划. 保留所有权利.</p>
+                <p class="text-blue-300 mt-2">本项目旨在参加好创意大赛，推动海洋生态保护</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 共用脚本 -->
+    <script src="assets/js/common.js"></script>
+    
+    <!-- 3D白海豚模型 -->
+    <script>
+        // 初始化3D白海豚模型
+        document.addEventListener('DOMContentLoaded', function() {
+            initDolphin3D();
+            initMouseFollow();
+            initScrollAnimations();
+        });
+
+        // 3D白海豚模型
+        function initDolphin3D() {
+            const container = document.getElementById('dolphin-3d-container');
+            if (!container) return;
+
+            // 创建场景
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x1a365d);
+
+            // 创建相机
+            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.z = 8;
+            camera.position.y = 2;
+
+            // 创建渲染器
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            container.innerHTML = '';
+            container.appendChild(renderer.domElement);
+
+            // 添加环境光
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+
+            // 添加方向光
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(5, 10, 5);
+            directionalLight.castShadow = true;
+            directionalLight.shadow.mapSize.width = 2048;
+            directionalLight.shadow.mapSize.height = 2048;
+            directionalLight.shadow.camera.near = 0.5;
+            directionalLight.shadow.camera.far = 500;
+            scene.add(directionalLight);
+
+            // 添加点光源
+            const pointLight = new THREE.PointLight(0x3b82f6, 0.5, 100);
+            pointLight.position.set(0, 5, -5);
+            scene.add(pointLight);
+
+            // 添加水下光线效果
+            const underwaterLight = new THREE.HemisphereLight(0x3b82f6, 0x1e3a8a, 0.4);
+            scene.add(underwaterLight);
+
+            // 创建白海豚模型
+            const dolphinGroup = new THREE.Group();
+            
+            // 创建身体（使用更复杂的几何体）
+            const bodyGeometry = new THREE.SphereGeometry(2, 32, 32, 0, Math.PI * 2, 0, Math.PI);
+            const bodyMaterial = new THREE.MeshPhysicalMaterial({ 
+                color: 0xfff0f5,
+                metalness: 0.2,
+                roughness: 0.1,
+                transparent: true,
+                opacity: 0.95,
+                clearcoat: 0.8,
+                clearcoatRoughness: 0.2,
+                reflectivity: 0.3
+            });
+            const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+            body.rotation.x = Math.PI / 2;
+            body.position.z = -1;
+            body.castShadow = true;
+            body.receiveShadow = true;
+            dolphinGroup.add(body);
+
+            // 创建背鳍
+            const finGeometry = new THREE.ShapeGeometry(new THREE.Shape([
+                new THREE.Vector2(0, 0),
+                new THREE.Vector2(1, 0.2),
+                new THREE.Vector2(0.8, 1.2),
+                new THREE.Vector2(0.5, 1.5),
+                new THREE.Vector2(0.2, 1.2),
+                new THREE.Vector2(0, 0.8)
+            ]));
+            const finMaterial = new THREE.MeshPhysicalMaterial({ 
+                color: 0xfff0f5,
+                metalness: 0.2,
+                roughness: 0.1,
+                transparent: true,
+                opacity: 0.95
+            });
+            const fin = new THREE.Mesh(finGeometry, finMaterial);
+            fin.scale.set(0.8, 0.8, 0.2);
+            fin.position.set(0, 1.8, 0);
+            fin.rotation.x = Math.PI / 2;
+            fin.castShadow = true;
+            dolphinGroup.add(fin);
+
+            // 胸鳍（两个）
+            const pectoralFinGeometry = new THREE.ShapeGeometry(new THREE.Shape([
+                new THREE.Vector2(0, 0),
+                new THREE.Vector2(0.8, 0.1),
+                new THREE.Vector2(0.6, 0.8),
+                new THREE.Vector2(0.3, 1.0),
+                new THREE.Vector2(0, 0.7)
+            ]));
+            const pectoralFinMaterial = new THREE.MeshPhysicalMaterial({ 
+                color: 0xfff0f5,
+                metalness: 0.2,
+                roughness: 0.1,
+                transparent: true,
+                opacity: 0.95
+            });
+            
+            const pectoralFinLeft = new THREE.Mesh(pectoralFinGeometry, pectoralFinMaterial);
+            pectoralFinLeft.scale.set(0.6, 0.6, 0.15);
+            pectoralFinLeft.position.set(-1.5, 0.3, 0);
+            pectoralFinLeft.rotation.x = Math.PI / 2;
+            pectoralFinLeft.rotation.z = Math.PI / 4;
+            pectoralFinLeft.castShadow = true;
+            dolphinGroup.add(pectoralFinLeft);
+            
+            const pectoralFinRight = new THREE.Mesh(pectoralFinGeometry, pectoralFinMaterial);
+            pectoralFinRight.scale.set(0.6, 0.6, 0.15);
+            pectoralFinRight.position.set(1.5, 0.3, 0);
+            pectoralFinRight.rotation.x = Math.PI / 2;
+            pectoralFinRight.rotation.z = -Math.PI / 4;
+            pectoralFinRight.castShadow = true;
+            dolphinGroup.add(pectoralFinRight);
+
+            // 尾巴
+            const tailGeometry = new THREE.ShapeGeometry(new THREE.Shape([
+                new THREE.Vector2(0, 0),
+                new THREE.Vector2(1.5, 0.2),
+                new THREE.Vector2(1.2, 0.8),
+                new THREE.Vector2(0.8, 1.0),
+                new THREE.Vector2(0.4, 0.8),
+                new THREE.Vector2(0, 0.5)
+            ]));
+            const tailMaterial = new THREE.MeshPhysicalMaterial({ 
+                color: 0xfff0f5,
+                metalness: 0.2,
+                roughness: 0.1,
+                transparent: true,
+                opacity: 0.95
+            });
+            const tail = new THREE.Mesh(tailGeometry, tailMaterial);
+            tail.scale.set(1, 1, 0.3);
+            tail.position.set(0, 0, -4);
+            tail.rotation.x = Math.PI / 2;
+            tail.castShadow = true;
+            dolphinGroup.add(tail);
+
+            // 眼睛（两个）
+            const eyeGeometry = new THREE.SphereGeometry(0.25, 32, 32);
+            const eyeMaterial = new THREE.MeshPhysicalMaterial({ 
+                color: 0x000000,
+                metalness: 0.1,
+                roughness: 0.0
+            });
+            
+            const eyeLeft = new THREE.Mesh(eyeGeometry, eyeMaterial);
+            eyeLeft.position.set(-0.8, 0.8, 1.5);
+            dolphinGroup.add(eyeLeft);
+            
+            const eyeRight = new THREE.Mesh(eyeGeometry, eyeMaterial);
+            eyeRight.position.set(0.8, 0.8, 1.5);
+            dolphinGroup.add(eyeRight);
+
+            // 眼睛高光
+            const highlightGeometry = new THREE.SphereGeometry(0.1, 16, 16);
+            const highlightMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+            
+            const highlightLeft = new THREE.Mesh(highlightGeometry, highlightMaterial);
+            highlightLeft.position.set(-0.7, 0.9, 1.6);
+            dolphinGroup.add(highlightLeft);
+            
+            const highlightRight = new THREE.Mesh(highlightGeometry, highlightMaterial);
+            highlightRight.position.set(0.9, 0.9, 1.6);
+            dolphinGroup.add(highlightRight);
+
+            // 嘴部
+            const mouthGeometry = new THREE.CylinderGeometry(0.3, 0.5, 1, 32, 1, true);
+            const mouthMaterial = new THREE.MeshPhysicalMaterial({ 
+                color: 0xffffff,
+                metalness: 0.1,
+                roughness: 0.3,
+                transparent: true,
+                opacity: 0.9
+            });
+            const mouth = new THREE.Mesh(mouthGeometry, mouthMaterial);
+            mouth.rotation.x = Math.PI / 2;
+            mouth.position.set(0, 0.2, 2.2);
+            dolphinGroup.add(mouth);
+
+            // 添加纹理效果（模拟皮肤纹理）
+            const textureLoader = new THREE.TextureLoader();
+            const skinTexture = textureLoader.load('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==');
+            skinTexture.wrapS = skinTexture.wrapT = THREE.RepeatWrapping;
+            skinTexture.repeat.set(5, 5);
+            bodyMaterial.map = skinTexture;
+            bodyMaterial.needsUpdate = true;
+
+            // 添加到场景
+            scene.add(dolphinGroup);
+
+            // 添加水粒子效果
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = 1000;
+            const posArray = new Float32Array(particlesCount * 3);
+
+            for (let i = 0; i < particlesCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 20;
+            }
+
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+            const particlesMaterial = new THREE.PointsMaterial({
+                size: 0.05,
+                color: 0x3b82f6,
+                transparent: true,
+                opacity: 0.6
+            });
+
+            const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particlesMesh);
+
+            // 添加轨道控制器
+            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.enableZoom = true;
+            controls.minDistance = 3;
+            controls.maxDistance = 15;
+            controls.maxPolarAngle = Math.PI / 2;
+
+            // 动画循环
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                // 让白海豚缓慢旋转
+                dolphinGroup.rotation.y += 0.005;
+                
+                // 让尾巴摆动（更自然的动画）
+                tail.rotation.z = Math.sin(Date.now() * 0.008) * 0.4;
+                
+                // 让背鳍轻微摆动
+                fin.rotation.z = Math.sin(Date.now() * 0.006) * 0.1;
+                
+                // 让胸鳍摆动（更自然的游泳动作）
+                pectoralFinLeft.rotation.z = Math.PI / 4 + Math.sin(Date.now() * 0.006) * 0.3;
+                pectoralFinRight.rotation.z = -Math.PI / 4 + Math.sin(Date.now() * 0.006) * 0.3;
+                
+                // 让身体轻微上下浮动
+                dolphinGroup.position.y = Math.sin(Date.now() * 0.003) * 0.3;
+                
+                // 粒子动画
+                particlesMesh.rotation.y += 0.001;
+                
+                controls.update();
+                renderer.render(scene, camera);
+            }
+
+            // 响应窗口大小变化
+            function onWindowResize() {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            }
+
+            window.addEventListener('resize', onWindowResize);
+
+            // 点击模型事件
+            const raycaster = new THREE.Raycaster();
+            const mouse = new THREE.Vector2();
+
+            function onMouseClick(event) {
+                mouse.x = (event.clientX - container.getBoundingClientRect().left) / container.clientWidth * 2 - 1;
+                mouse.y = -(event.clientY - container.getBoundingClientRect().top) / container.clientHeight * 2 + 1;
+
+                raycaster.setFromCamera(mouse, camera);
+                const intersects = raycaster.intersectObjects(dolphinGroup.children);
+
+                if (intersects.length > 0) {
+                    showNotification('中华白海豚：国家一级保护动物，被誉为"海上大熊猫"', 'info');
+                }
+            }
+
+            container.addEventListener('click', onMouseClick);
+
+            // 空格键重置视角
+            document.addEventListener('keydown', function(event) {
+                if (event.code === 'Space') {
+                    camera.position.set(0, 2, 8);
+                    camera.lookAt(0, 0, 0);
+                    controls.reset();
+                    showNotification('视角已重置', 'success');
+                }
+            });
+
+            // 开始动画
+            animate();
+        }
+    </script>
+</body>
+</html>
